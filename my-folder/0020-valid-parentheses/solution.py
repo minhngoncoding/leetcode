@@ -3,22 +3,19 @@ class Solution:
         if len(s) == 1:
             return False
 
-        matching_pairs = {
+        stack = []
+        pairs = {
             '(': ')',
-            '{': '}',
-            '[': ']'
+            '[': ']',
+            '{': '}'
         }
 
-        stack = []
         for char in s:
-            if char == '(' or char == '[' or char == "{":
+            if char in pairs:
                 stack.append(char)
-            elif char == "]" or char == "}" or char == ")":
-                if stack == []:
-                    return False
-                current_element = stack.pop()
-                if matching_pairs.get(current_element) != char:
-                    return False
+            elif len(stack) == 0 or char != pairs[stack.pop()]:
+                return False
+            
+        return len(stack) == 0
 
-        return False if stack else True
         
