@@ -1,9 +1,16 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        for index1, num1 in enumerate(nums):
-            for index2, num2 in enumerate(nums[index1+1:]):
-                if num2 == (target - num1):
-                    return [index1, index1+index2+1]
-            
+        sum_dct = {}
 
-                  
+        for index, num in enumerate(nums):
+
+            if num not in sum_dct.keys():
+                sum_dct[target-num] = index
+            else:
+                return [index, sum_dct[num]]
+
+        
+
+                
+
+            
