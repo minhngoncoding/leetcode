@@ -8,12 +8,10 @@ class Solution:
                 dct[char] += 1
 
         for char in ransomNote:
-            if char not in dct:
-                return False
+            if char in dct and dct[char] > 0:
+                dct[char] -= 1
             else:
-                if dct[char] > 0:
-                    dct[char] -= 1
-                else:
-                    return False
+                return False
+                
         return True
 
