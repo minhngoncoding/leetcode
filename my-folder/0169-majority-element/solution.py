@@ -1,12 +1,11 @@
 class Solution:
     def majorityElement(self, nums: List[int]) -> int:
-        hash_table = {}
-        if len(nums) == 1:
-            return nums[0]
-        for num in nums:
-            if num not in hash_table.keys():
-                hash_table[num] = 1
-            else:
-                hash_table[num] += 1
-                if hash_table[num] > len(nums)//2:
-                    return num
+        res = majority = 0
+        
+        for n in nums:
+            if majority == 0:
+                res = n
+            
+            majority += 1 if n == res else -1
+
+        return res
